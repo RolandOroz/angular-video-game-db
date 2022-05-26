@@ -17,26 +17,29 @@
 </div>
 
 <div class="games">
+  <ng-container *ngFor="let game of games">
   <div class="game">
     <div class="game-thumb-container">
-
-<!--   temporary img source-->
-      <img src="https://www.pcgamesarchive.com/wp-content/uploads/2017/08/Grand-Theft-Auto-V-wallpaper-8-scaled.jpg"
-           alt="thumbnail"
-           class="game-thumbnail"
+      <img
+        *ngIf="game.background_image"
+        src="{{ game.background_image }}"
+        alt="thumbnail"
+        class="game-thumbnail"
       />
+      <p *ngIf="!game.background_image">No image available...</p>
+    </div>
       <div class="game-description">
-        <p class="game-name">Name</p>
+        <p class="game-name">{{ game.name }}</p>
         <div class="game-platforms">
-
-<!--    temporary img source-->
           <img
+            *ngFor="let gamePlatform of game.parent_platforms"
             class="game-platform"
-            src="https://images.pushsquare.com/2d9e2786dcfe0/ps5-playstation-5-logo-sony-1.original.jpg"
-            alt="slug"
+            src="assets/images/platforms/{{gamePlatform.platform.slug}}.svg"
+            alt="{{ gamePlatform.platform.slug }}"
           />
-        </div>
+
       </div>
     </div>
   </div>
+  </ng-container>
 </div>
