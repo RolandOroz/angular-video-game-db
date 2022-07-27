@@ -33,17 +33,19 @@
         </ng-container>
       </p>
     </mat-tab>
-    <mat-tab label="Screenshots">
+    <mat-tab label="Screenshots" *ngIf="game.screenshots?.length">
       <img
         class="game-screenshot"
-        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.rawg.io%2Fmedia%2Fresize%2F1280%2F-%2Fgames%2F7f0%2F7f021d4a3577ac9d591a628a431fc2e5.jpg&f=1&nofb=1"
+        *ngFor="let screenshot of game.screenshots"
+        src="{{screenshot.image}}"
         alt="screenshot">
     </mat-tab>
-    <mat-tab label="Trailers">
+    <mat-tab label="Trailers" *ngIf="game.trailers?.length">
       <video
         class="game-trailer"
-        controls>
-        <source src="https://www.imdb.com/video/vi2401674265?playlistId=tt2321297&ref_=tt_pr_ov_vi">
+        controls
+        *ngFor="let trailer of game.trailers">
+        <source src="{{trailer.data?.max}}" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </mat-tab>
